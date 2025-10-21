@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "nebari-dia-adx"
+  site-url: "https://equinor.github.io/nebari-dia-adx"
+  description: "Repo for modules to connect to adx"
+  repo-branch: main
+  repo-url: "https://github.com/equinor/nebari-dia-adx"
