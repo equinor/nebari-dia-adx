@@ -5,4 +5,8 @@ d = { 'settings': { 'branch': 'main',
                 'doc_host': 'https://equinor.github.io',
                 'git_url': 'https://github.com/equinor/nebari-dia-adx',
                 'lib_path': 'nebari_dia_adx'},
-  'syms': {'nebari_dia_adx.core': {'nebari_dia_adx.core.foo': ('core.html#foo', 'nebari_dia_adx/core.py')}}}
+  'syms': { 'nebari_dia_adx.adx_connection': { 'nebari_dia_adx.adx_connection.get_kusto_client': ( 'adx.html#get_kusto_client',
+                                                                                                   'nebari_dia_adx/adx_connection.py'),
+                                               'nebari_dia_adx.adx_connection.perform_query': ( 'adx.html#perform_query',
+                                                                                                'nebari_dia_adx/adx_connection.py')},
+            'nebari_dia_adx.core': {'nebari_dia_adx.core.foo': ('core.html#foo', 'nebari_dia_adx/core.py')}}}
