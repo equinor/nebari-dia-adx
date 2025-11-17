@@ -1,0 +1,78 @@
+# Dependabot configuration file
+# Documentation: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuring-dependabot-version-updates
+# For reference for all possible options: https://docs.github.com/en/code-security/dependabot/working-with-dependabot/dependabot-options-reference
+version: 2
+
+updates:
+  # GitHub Actions
+  - package-ecosystem: github-actions
+    directories:
+      - '/'
+    schedule:
+      interval: "weekly"
+      day: "sunday" # specify the day of the week for updates
+
+  # Jupyter
+  - package-ecosystem: "pip"
+    commit-message:
+      prefix: "deps(jupyter)"
+    cooldown:
+      default-days: 5
+      semver-major-days: 15
+      semver-minor-days: 7
+      semver-patch-days: 3
+    directory: "python-examples/jupyter"
+    schedule:
+      interval: "weekly"
+  
+  # NPM
+  - package-ecosystem: "npm"
+    commit-message:
+      prefix: "deps(npm)"
+    cooldown:
+      default-days: 5
+      semver-major-days: 15
+      semver-minor-days: 7
+      semver-patch-days: 3
+    directory: "javascript-examples/npm"
+    schedule:
+      interval: "weekly"
+  
+  # # nuget
+  # - package-ecosystem: "nuget"
+  #   commit-message:
+  #     prefix: "deps(dotnet-nuget)"
+  #   cooldown:
+  #     default-days: 5
+  #     semver-major-days: 15
+  #     semver-minor-days: 7
+  #     semver-patch-days: 3
+  #   directory: "dotnet-examples/nuget"
+  #   schedule:
+  #     interval: "weekly"
+
+  # pip
+  - package-ecosystem: "pip"
+    commit-message:
+      prefix: "deps(pip)"
+    cooldown:
+      default-days: 5
+      semver-major-days: 15
+      semver-minor-days: 7
+      semver-patch-days: 3
+    directory: "python-examples/pip"
+    schedule:
+      interval: "weekly"
+
+  # Java Maven
+  - package-ecosystem: "maven"
+    commit-message:
+      prefix: "deps(maven)"
+    cooldown:
+      default-days: 5
+      semver-major-days: 15
+      semver-minor-days: 7
+      semver-patch-days: 3
+    directory: "/java-examples/maven"
+    schedule:
+      interval: "weekly"
