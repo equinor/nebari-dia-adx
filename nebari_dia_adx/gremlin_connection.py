@@ -113,7 +113,7 @@ def convert_date_to_proper_format(date):
 
 # %% ../nbs/query_cosmos.ipynb 7
 def add_day(date):
-    return convert_date_to_proper_format(date) + timedelta(days=1)
+    return (pd.to_datetime(date) + timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 # %% ../nbs/query_cosmos.ipynb 9
 def get_rigs( start_date, end_date =None): 
