@@ -125,7 +125,7 @@ def get_rigs( start_date, end_date =None):
     query = f"""
     g.V().hasLabel('operations')
         .has('startTimeUTC', gt('{start_date}')).has('endTimeUTC', lt('{end_date}'))
-        .inE('PERFORMED').outV()  
+        .in('PERFORMED')
         .group().by(values('properties', 'rigName')).by(values('id'))
     """
 
@@ -140,8 +140,8 @@ def get_wellbores_by_rig(rigId, start_date, end_date=None):
     if end_date is None:
         end_date = add_day(start_date)
     query = f"""g.V('{rigId}')
-                .outE().hasLabel('PERFORMED').inV().has('startTimeUTC', gt('{start_date}')).has('endTimeUTC',lt('{end_date}'))
-                .outE().hasLabel('ON').inV()
+                .out('PERFORMED').has('startTimeUTC', gt('{start_date}')).has('endTimeUTC',lt('{end_date}'))
+                .out('ON')
                    .group().by(values('properties', 'wellboreName')).by(values('id'))
                 """
 
@@ -149,11 +149,8 @@ def get_wellbores_by_rig(rigId, start_date, end_date=None):
     return submit_query(query)[0]
 
 # %% ../nbs/query_cosmos.ipynb 12
-def query_rigs(rigId, start_date, end_date=None):
-    start_date = convert_date_to_proper_format(start_date)
-    if end_date is None:
-        end_date = add_day(start_date)
-    query= f"""g.V('{rigId}').outE().hasLabel('PERFORMED').inV()
+def query_rigs(rigId, start_date, end_date):
+    query= f"""g.V('{rigId}').out('PERFORMED')
                 .has('startTimeUTC', gt('{start_date}')).has('endTimeUTC',lt('{end_date}')) 
                     .project('startTimeUTC', 'endTimeUTC', 'conveyance','mainActivity',  'activityName', 'description', 'activityCategory')
                     .by(values('properties', 'startTimeUTC'))
