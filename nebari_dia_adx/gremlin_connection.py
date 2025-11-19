@@ -73,6 +73,7 @@ class GremlinClientManager():
         )
 
         try:
+            self.ensure_token_validity()
             yield gremlin_client
         finally:
             gremlin_client.close() 
@@ -115,7 +116,7 @@ def convert_date_to_proper_format(date):
 def add_day(date):
     return (pd.to_datetime(date) + timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-# %% ../nbs/query_cosmos.ipynb 9
+# %% ../nbs/query_cosmos.ipynb 10
 def get_rigs( start_date, end_date =None): 
     """Get rigs with active operations for the given date"""
     start_date = convert_date_to_proper_format(start_date)
@@ -132,7 +133,7 @@ def get_rigs( start_date, end_date =None):
     return submit_query(query)[0]
 
 
-# %% ../nbs/query_cosmos.ipynb 10
+# %% ../nbs/query_cosmos.ipynb 11
 # TODO rig might have no relaitons
 def get_wellbores_by_rig(rigId, start_date, end_date=None):
     start_date = convert_date_to_proper_format(start_date)
@@ -147,7 +148,7 @@ def get_wellbores_by_rig(rigId, start_date, end_date=None):
     
     return submit_query(query)[0]
 
-# %% ../nbs/query_cosmos.ipynb 11
+# %% ../nbs/query_cosmos.ipynb 12
 def query_rigs(rigId, start_date, end_date=None):
     start_date = convert_date_to_proper_format(start_date)
     if end_date is None:
